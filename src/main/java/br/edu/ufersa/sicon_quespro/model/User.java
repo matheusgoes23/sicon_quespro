@@ -1,22 +1,29 @@
 package br.edu.ufersa.sicon_quespro.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "user_tb")
-public class User {
+@Table(name = "tb_user")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class User implements Serializable {
+    public static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
+    private String email;
+    private String login;
+    private String senha;
 
-    private String fullname;
+    private UserEnum tipo;
 
-    public User(String fullname) {
-        this.fullname = fullname;
+    public User(UserEnum tipo) {
+        this.tipo = tipo;
     }
 
     public User() {
-
     }
 
     public Long getId() {
@@ -27,11 +34,43 @@ public class User {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getNome() {
+        return nome;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public UserEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(UserEnum tipo) {
+        this.tipo = tipo;
     }
 }

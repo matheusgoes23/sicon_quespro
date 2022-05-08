@@ -3,15 +3,12 @@ package br.edu.ufersa.sicon_quespro;
 import br.edu.ufersa.sicon_quespro.controller.PrimaryController;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.io.IOException;
 
 public class FxApplication extends Application {
 

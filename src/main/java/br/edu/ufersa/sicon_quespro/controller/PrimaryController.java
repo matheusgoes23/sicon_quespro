@@ -1,8 +1,6 @@
 package br.edu.ufersa.sicon_quespro.controller;
 
 import br.edu.ufersa.sicon_quespro.config.Router;
-import br.edu.ufersa.sicon_quespro.model.User;
-import br.edu.ufersa.sicon_quespro.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,9 +20,6 @@ public class PrimaryController implements Initializable {
     @Autowired
     Router router;
 
-    @Autowired
-    UserService userService;
-
     @FXML
     private TextField txtFullName;
 
@@ -34,10 +29,8 @@ public class PrimaryController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        User user = new User("Nome" + Math.random());
+        var user = "user: " + Math.random();
 
-        txtFullName.setText(userService.findById(userService.save(user).getId()).getFullname());
+        txtFullName.setText(user);
     }
-
-
 }
