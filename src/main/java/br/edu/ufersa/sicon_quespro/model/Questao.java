@@ -2,9 +2,7 @@ package br.edu.ufersa.sicon_quespro.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,15 +15,14 @@ public class Questao implements Serializable {
     private Long id;
     private String enunciado;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "tb_questao_tema", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "tema_id"))
     Set<Tema> temas = new HashSet<>();
 
-    @OneToMany(mappedBy = "questao")
-    Set<Resposta> respostas = new HashSet<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "tb_resposta", joinColumns = @JoinColumn(name = "questao_id"))
+    Set<String> respostas = new HashSet<>();
 
-    @ManyToMany(mappedBy = "questoes")
-    Set<Atividade> atividades = new HashSet<>();
     private boolean visibilidade;
     private int correta;
     private int respondida;
@@ -54,20 +51,12 @@ public class Questao implements Serializable {
         this.temas = temas;
     }
 
-    public Set<Resposta> getRespostas() {
+    public Set<String> getRespostas() {
         return respostas;
     }
 
-    public void setRespostas(Set<Resposta> respostas) {
+    public void setRespostas(Set<String> respostas) {
         this.respostas = respostas;
-    }
-
-    public Set<Atividade> getAtividades() {
-        return atividades;
-    }
-
-    public void setAtividades(Set<Atividade> atividades) {
-        this.atividades = atividades;
     }
 
     public boolean isVisibilidade() {
@@ -92,5 +81,18 @@ public class Questao implements Serializable {
 
     public void setRespondida(int respondida) {
         this.respondida = respondida;
+    }
+
+    @Override
+    public String toString() {
+        return "Questao{" +
+                "id=" + id +
+                ", enunciado='" + enunciado + '\'' +
+                ", temas=" + temas +
+                ", respostas=" + respostas +
+                ", visibilidade=" + visibilidade +
+                ", correta=" + correta +
+                ", respondida=" + respondida +
+                '}';
     }
 }

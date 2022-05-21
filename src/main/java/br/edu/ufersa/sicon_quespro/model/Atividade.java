@@ -1,13 +1,8 @@
 package br.edu.ufersa.sicon_quespro.model;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +15,7 @@ public class Atividade implements Serializable {
     private Long id;
     private String semestre;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "tb_atividade_questao",
             joinColumns = @JoinColumn(name = "atividade_id"),
             inverseJoinColumns = @JoinColumn(name = "questao_id"))

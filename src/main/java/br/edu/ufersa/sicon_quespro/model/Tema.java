@@ -13,6 +13,18 @@ public class Tema implements Serializable {
     private Long id;
     private String nome;
 
+    public Tema(String nome) {
+        this.nome = nome;
+    }
+
+    public Tema(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Tema() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -27,5 +39,13 @@ public class Tema implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Tema{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 }
