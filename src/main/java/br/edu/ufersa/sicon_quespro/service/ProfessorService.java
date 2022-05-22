@@ -61,7 +61,12 @@ public class ProfessorService {
 
     public void deletar(Long id) throws Exception {
         buscarPorId(id);
-        userRepository.deleteById(id);
+
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new Exception("Esse professor não pode ser deletado, pois está sendo usado!");
+        }
     }
 
     private Professor toProfessor(User user) {

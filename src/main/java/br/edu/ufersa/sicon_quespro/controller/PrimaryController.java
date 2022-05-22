@@ -4,6 +4,7 @@ import br.edu.ufersa.sicon_quespro.config.Router;
 import br.edu.ufersa.sicon_quespro.model.Questao;
 import br.edu.ufersa.sicon_quespro.model.Tema;
 import br.edu.ufersa.sicon_quespro.service.QuestaoService;
+import br.edu.ufersa.sicon_quespro.service.TemaService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +29,9 @@ public class PrimaryController implements Initializable {
     @Autowired
     QuestaoService questaoService;
 
+    @Autowired
+    TemaService temaService;
+
     @FXML
     private TextField txtFullName;
 
@@ -42,16 +46,27 @@ public class PrimaryController implements Initializable {
         try {
 //            testeCriarQuestao();
 //            testeListarTodasQuestoes();
+//            questaoService.listarPublicas().forEach(System.out::println);
 //            testeBuscarQuestaoPorId(10L);
+//            testeTornarQuestaoPublica(10L, false);
 //            testeDeletarQuestaoPorId(3L);
 //            testeEditarQuestao(10L);
+//            temaService.cadastrar(new Tema("Novo tema"));
+//            temaService.deletar(13L);
+//            temaService.editar(12L, new Tema("Novo tema"));
+//            temaService.listar().forEach(System.out::println);
+
 
         } catch (Exception e) {
-            System.out.println("Erro");
+            System.out.println(e.getMessage());
         }
 
 
         txtFullName.setText(user);
+    }
+
+    private void testeTornarQuestaoPublica(Long id, boolean visibilidade) throws Exception {
+        questaoService.tornarPublica(id, visibilidade);
     }
 
     private void testeDeletarQuestaoPorId(Long id) throws Exception {

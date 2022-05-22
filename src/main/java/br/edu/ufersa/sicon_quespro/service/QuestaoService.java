@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +22,20 @@ public class QuestaoService {
     @Transactional(readOnly = true)
     public List<Questao> listar() {
         return questaoRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Questao> listarPublicas() {
+
+        List<Questao> questoes = questaoRepository.findAll();
+        List<Questao> questoesPublicas = new ArrayList<>();
+
+        questoes.forEach(questao -> {
+            if (questao.isVisibilidade())
+                questoesPublicas.add(questao);
+        });
+
+        return questoesPublicas;
     }
 
     @Transactional(readOnly = true)
@@ -56,6 +71,18 @@ public class QuestaoService {
 
     public void deletar(Long id) throws Exception {
         buscarPorId(id);
-        questaoRepository.deleteById(id);
+
+        try {
+            questaoRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new Exception("Essa questão não pode ser deletada, pois está sendo usada!");
+        }
+    }
+
+    @Transactional
+    public void tornarPublica(Long id, boolean visibilidade) throws Exception {
+        Questao questao = buscarPorId(id);
+        questao.setVisibilidade(visibilidade);
+        questaoRepository.save(questao);
     }
 }
