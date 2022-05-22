@@ -18,7 +18,6 @@ public class QuestaoService {
     @Autowired
     private TemaRepository temaRepository;
 
-
     @Transactional(readOnly = true)
     public List<Questao> listar() {
         return questaoRepository.findAll();
@@ -45,6 +44,13 @@ public class QuestaoService {
             }
         });
 
+        return questaoRepository.save(questao);
+    }
+
+    @Transactional
+    public Questao editar(Long id, Questao questao) throws Exception {
+        buscarPorId(id);
+        questao.setId(id);
         return questaoRepository.save(questao);
     }
 

@@ -42,8 +42,9 @@ public class PrimaryController implements Initializable {
         try {
 //            testeCriarQuestao();
 //            testeListarTodasQuestoes();
-//            testeBuscarQuestaoPorId(3L);
+//            testeBuscarQuestaoPorId(10L);
 //            testeDeletarQuestaoPorId(3L);
+//            testeEditarQuestao(10L);
 
         } catch (Exception e) {
             System.out.println("Erro");
@@ -85,5 +86,27 @@ public class PrimaryController implements Initializable {
         questao.setRespondida(9);
 
         System.out.println(questaoService.cadastrar(questao).toString());
+    }
+
+    private void testeEditarQuestao(Long id) throws Exception {
+        Questao questao = new Questao();
+        Set<Tema> temas = new HashSet<>();
+        Set<String> respostas = new HashSet<>();
+
+        temas.add(new Tema(1L, "Primeiro Tema"));
+        temas.add(new Tema("Terceira Tema"));
+        temas.add(new Tema("Quarta Tema"));
+
+        respostas.add("Terceira Resposta");
+        respostas.add("Quarta Resposta");
+
+        questao.setEnunciado("Segunda Questão");
+        questao.setTemas(temas);
+        questao.setRespostas(respostas);
+        questao.setVisibilidade(false);
+        questao.setCorreta(10);
+        questao.setRespondida(11);
+
+        System.out.println(questaoService.editar(id, questao).toString());
     }
 }
