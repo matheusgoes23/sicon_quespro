@@ -1,8 +1,8 @@
 package br.edu.ufersa.sicon_quespro;
 
-import javafx.application.Application;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javafx.application.Application;
 
 @SpringBootApplication
 public class SiConQuesProApplication {
@@ -13,5 +13,5 @@ public class SiConQuesProApplication {
 //    public static void main(String[] args) {
 //        SpringApplication.run(SiConQuesProApplication.class, args);
 //    }
-
+    	
 }
