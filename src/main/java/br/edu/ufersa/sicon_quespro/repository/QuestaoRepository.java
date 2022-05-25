@@ -1,7 +1,11 @@
 package br.edu.ufersa.sicon_quespro.repository;
 
-import br.edu.ufersa.sicon_quespro.model.Questao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface QuestaoRepository extends JpaRepository<Questao, Long> {
+import br.edu.ufersa.sicon_quespro.model.Questao;
+import br.edu.ufersa.sicon_quespro.model.Tema;
+
+public interface QuestaoRepository extends JpaRepository<Questao, Long> {	
+	public Questao findByTema(Tema tema);
+
 }
