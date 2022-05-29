@@ -17,7 +17,7 @@ public class Questao implements Serializable {
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "tb_questao_tema", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "tema_id"))
-    Set<Tema> temas = new HashSet<>();
+    Set<Tema> tema = new HashSet<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "tb_resposta", joinColumns = @JoinColumn(name = "questao_id"))
@@ -44,11 +44,11 @@ public class Questao implements Serializable {
     }
 
     public Set<Tema> getTemas() {
-        return temas;
+        return tema;
     }
 
     public void setTemas(Set<Tema> temas) {
-        this.temas = temas;
+        this.tema = temas;
     }
 
     public Set<String> getRespostas() {
@@ -88,7 +88,7 @@ public class Questao implements Serializable {
         return "Questao{" +
                 "id=" + id +
                 ", enunciado='" + enunciado + '\'' +
-                ", temas=" + temas +
+                ", temas=" + tema +
                 ", respostas=" + respostas +
                 ", visibilidade=" + visibilidade +
                 ", correta=" + correta +
