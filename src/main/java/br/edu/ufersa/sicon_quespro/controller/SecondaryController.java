@@ -4,6 +4,7 @@ import br.edu.ufersa.sicon_quespro.config.Router;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,9 @@ public class SecondaryController implements Initializable {
     @Autowired
     Router router;
 
+    @FXML
+    private Button secondaryButton;
+    
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
         router.navigate(PrimaryController.class, event);
