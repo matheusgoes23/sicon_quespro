@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface QuestaoRepository extends JpaRepository<Questao, Long> {
 
-    @Query("SELECT obj FROM Questao obj WHERE obj.temas = :tema")
+    @Query("SELECT obj FROM Questao obj WHERE obj.tema = :tema")
     Questao findByTema(Tema tema);
 
 }
