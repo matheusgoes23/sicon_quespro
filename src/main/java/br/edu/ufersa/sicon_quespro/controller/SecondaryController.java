@@ -20,7 +20,7 @@ public class SecondaryController implements Initializable {
 
     @FXML
     void switchToPrimary(ActionEvent event) throws IOException {
-        router.navigate(PrimaryController.class, event);
+        router.navigate(LoginController.class, event);
     }
 
 
