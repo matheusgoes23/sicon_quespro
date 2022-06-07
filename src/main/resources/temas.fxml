@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.sicon_quespro.controller.TemasController">
+   <children>
+      <TableView fx:id="tb_temas" layoutX="292.0" layoutY="197.0" prefHeight="327.0" prefWidth="697.0">
+        <columns>
+            <TableColumn prefWidth="75.0" text="Id" />
+          <TableColumn prefWidth="488.0" text="Nome" />
+          <TableColumn prefWidth="133.0" text="Opções" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_newTema" layoutX="944.0" layoutY="164.0" mnemonicParsing="false" onAction="#openModal" text="Novo" />
+      <Pane fx:id="pn_modal" layoutX="423.0" layoutY="135.0" prefHeight="451.0" prefWidth="436.0" style="-fx-background-color: #fff; -fx-border-radius: 7px; -fx-background-radius: 7px;" visible="false">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text layoutX="150.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Tema" wrappingWidth="136.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txf_nome" layoutX="88.0" layoutY="159.0" prefHeight="25.0" prefWidth="261.0" promptText="Nome" />
+            <Label layoutX="88.0" layoutY="136.0" text="Nome" />
+            <Button fx:id="btn_salvar" layoutX="370.0" layoutY="412.0" mnemonicParsing="false" onAction="#saveTema" text="Salvar" />
+            <Button fx:id="tbn_cancel" layoutX="294.0" layoutY="412.0" mnemonicParsing="false" onAction="#cancelModal" text="Cancelar" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

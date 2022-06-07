@@ -28,6 +28,6 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void switchToPrimary(ActionEvent event) throws IOException{
-		router.navigate(PrimaryController.class, event);
+		router.navigate(QuestaoController.class, event);
 	}
 }
