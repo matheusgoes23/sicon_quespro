@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -31,7 +32,7 @@ public class FxApplication extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+        stage.getIcons().add(new Image("file:/views/img/books.gif"));
     }
 
     @Override

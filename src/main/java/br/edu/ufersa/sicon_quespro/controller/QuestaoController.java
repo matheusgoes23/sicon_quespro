@@ -241,13 +241,16 @@ public class QuestaoController implements Initializable {
 
     @FXML
     void goToAtividades(ActionEvent event) {
-
+    	router.navigate(DashboardController.class, event);
     }
+
+   
 
     @FXML
     void goToQuestoes(ActionEvent event) {
-
+    	router.navigate(NovaAtividadeController.class, event);
     }
+
 
     @FXML
     void gotToprofessores(ActionEvent event) {
@@ -306,36 +309,7 @@ public class QuestaoController implements Initializable {
                             startTable(questaoService.listar());
                         });
                     }
-                    private final Button editBtn = new Button("Editar");
-
-                    {
-                    	editBtn.setOnAction((ActionEvent event) -> {
-                            Questao data = getTableView().getItems().get(getIndex());
-                            openEditModal();
-                            Questao temp = new Questao();
-                            try {
-								temp = questaoService.buscarPorId(data.getId());
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-                            ArrayList<Tema> temas = new ArrayList<>(temp.getTemas());
-                            txf_edit_tema_a.setText(temas.get(0).getNome());
-                    		txf_edit_tema_b.setText(temas.get(1).getNome());
-                   
-                    		ArrayList<String> respostas = new ArrayList<>(temp.getRespostas());
-                    		txf_edit_item_a.setText(respostas.get(0));
-                    		txf_edit_item_b.setText(respostas.get(1));
-                    		txf_edit_item_c.setText(respostas.get(2));
-                    		txf_edit_item_d.setText(respostas.get(3));
-
-                    		txf_edit_enunciado.setText(data.getEnunciado());
-                    	
-                    		txf_edit_resposta.setText(Integer.toString( data.getRespondida()));
-                            //System.out.println("Editado: " + data);
-                           
-                        });
-                    }
+                    
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);

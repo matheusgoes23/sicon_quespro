@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.sicon_quespro.controller.AtividadesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.sicon_quespro.controller.NovaAtividadeController">
    <children>
       <Pane prefHeight="111.0" prefWidth="1280.0">
          <children>
@@ -82,15 +82,14 @@
             <TextField fx:id="txf_titulo" layoutX="38.0" layoutY="39.0" prefHeight="25.0" prefWidth="442.0" promptText="Titulo" />
             <Label layoutX="38.0" layoutY="78.0" text="Semestre" />
             <TextField fx:id="txf_semestre" layoutX="38.0" layoutY="95.0" promptText="semestre" />
-            <TableView fx:id="tb_temas" layoutX="550.0" layoutY="39.0" prefHeight="385.0" prefWidth="518.0">
+            <TableView fx:id="tb_questao" layoutX="550.0" layoutY="39.0" prefHeight="385.0" prefWidth="518.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Selecionar" />
                   <TableColumn fx:id="column_id" prefWidth="75.0" text="Id" />
-                  <TableColumn fx:id="column_enunciado" prefWidth="277.0" text="Enunciado" />
+                  <TableColumn fx:id="column_enunciado" prefWidth="363.0" text="Enunciado" />
                </columns>
             </TableView>
             <Label layoutX="550.0" layoutY="22.0" text="Qustões" />
-            <Button fx:id="btn_salvar" layoutX="1093.0" layoutY="439.0" mnemonicParsing="false" style="-fx-background-color: #44CC88;" text="Salvar" textFill="WHITE">
+            <Button fx:id="btn_salvar" layoutX="1093.0" layoutY="439.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #44CC88;" text="Salvar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -99,7 +98,7 @@
                </cursor>
             </Button>
             <ComboBox layoutX="37.0" layoutY="140.0" prefWidth="150.0" promptText="Disciplina" />
-            <Button fx:id="btn_cancelar" layoutX="14.0" layoutY="439.0" mnemonicParsing="false" style="-fx-background-color: #CC4444;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="btn_cancelar" layoutX="14.0" layoutY="439.0" mnemonicParsing="false" onAction="#backToAtividades" style="-fx-background-color: #CC4444;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

@@ -26,7 +26,7 @@ public class Atividade implements Serializable {
     Disciplina disciplina;
 
     	
-    
+    public Atividade() {}
     public Atividade(String semestre, String titulo, Set<Questao> questoes, Disciplina disciplina) {
 		
 		this.semestre = semestre;
