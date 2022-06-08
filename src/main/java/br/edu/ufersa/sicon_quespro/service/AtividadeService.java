@@ -37,7 +37,7 @@ public class AtividadeService {
     }
 
     @Transactional
-    public Atividade cadastrar(Atividade atividade) {
+    public Atividade cadastrar(Atividade atividade) throws Exception{
 
 
         return atividadeRepository.save(atividade);

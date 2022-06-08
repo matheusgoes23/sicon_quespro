@@ -1,9 +1,17 @@
 package br.edu.ufersa.sicon_quespro.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -15,11 +23,13 @@ public class Atividade implements Serializable {
     private Long id;
     private String semestre;
     private String titulo;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_atividade_questao",
-            joinColumns = @JoinColumn(name = "atividade_id"),
-            inverseJoinColumns = @JoinColumn(name = "questao_id"))
-    Set<Questao> questoes = new HashSet<>();
+    //@ManyToMany(cascade = {CascadeType.MERGE})
+    //@JoinTable(name = "tb_atividade_questao",
+    //        joinColumns = @JoinColumn(name = "atividade_id"),
+    //        inverseJoinColumns = @JoinColumn(name = "questao_id"))
+    @ManyToMany
+	@JoinTable(name = "atividade_questao", joinColumns = @JoinColumn(name = "atividade_id"), inverseJoinColumns = @JoinColumn(name = "questao_id"))
+    List<Questao> questoes;
 
     @ManyToOne
     @JoinColumn(name = "disciplina_id")
@@ -27,7 +37,7 @@ public class Atividade implements Serializable {
 
     	
     public Atividade() {}
-    public Atividade(String semestre, String titulo, Set<Questao> questoes, Disciplina disciplina) {
+    public Atividade(String semestre, String titulo, List<Questao> questoes, Disciplina disciplina) {
 		
 		this.semestre = semestre;
 		this.titulo = titulo;
@@ -51,11 +61,11 @@ public class Atividade implements Serializable {
         this.semestre = semestre;
     }
 
-    public Set<Questao> getQuestoes() {
+    public List<Questao> getQuestoes() {
         return questoes;
     }
 
-    public void setQuestoes(Set<Questao> questoes) {
+    public void setQuestoes(List<Questao> questoes) {
         this.questoes = questoes;
     }
 
