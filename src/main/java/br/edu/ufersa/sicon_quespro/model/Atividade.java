@@ -14,7 +14,7 @@ public class Atividade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String semestre;
-
+    private String titulo;
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "tb_atividade_questao",
             joinColumns = @JoinColumn(name = "atividade_id"),
@@ -25,7 +25,17 @@ public class Atividade implements Serializable {
     @JoinColumn(name = "disciplina_id")
     Disciplina disciplina;
 
-    public Long getId() {
+    	
+    
+    public Atividade(String semestre, String titulo, Set<Questao> questoes, Disciplina disciplina) {
+		
+		this.semestre = semestre;
+		this.titulo = titulo;
+		this.questoes = questoes;
+		this.disciplina = disciplina;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -56,4 +66,13 @@ public class Atividade implements Serializable {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+    
 }
