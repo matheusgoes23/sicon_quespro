@@ -53,7 +53,7 @@ public class QuestaoController implements Initializable {
 		assert txf_resposta != null : "fx:id=\"txf_resposta\" was not injected: check your FXML file 'Untitled'.";
 		assert txf_tema1 != null : "fx:id=\"txf_tema1\" was not injected: check your FXML file 'Untitled'.";
 		assert txf_tema2 != null : "fx:id=\"txf_tema2\" was not injected: check your FXML file 'Untitled'.";
-		
+
 		startTable(questaoService.listar());
 		addButtonToTable();
 	}
@@ -78,16 +78,16 @@ public class QuestaoController implements Initializable {
 
 	@FXML
 	private TableView<Questao> tb_temas;
-	
+
 	@FXML
-    private TableColumn<Questao, String> column_enunciado;
+	private TableColumn<Questao, String> column_enunciado;
 
-    @FXML
-    private TableColumn<Questao, String> column_id;
+	@FXML
+	private TableColumn<Questao, String> column_id;
 
-   // @FXML
-    //private TableColumn<?, ?> column_opc;
-    
+	// @FXML
+	// private TableColumn<?, ?> column_opc;
+
 	@FXML
 	private Button tbn_cancel;
 
@@ -111,67 +111,71 @@ public class QuestaoController implements Initializable {
 
 	@FXML
 	private TextField txf_tema2;
-	
-	//Edicao
+
+	// Edicao
 	@FXML
-    private Button btn_editar;
+	private Button btn_editar;
 	@FXML
-    private Pane pn_edit_modal;
+	private Pane pn_edit_modal;
 	@FXML
-    private TextField txf_edit_enunciado;
+	private TextField txf_edit_enunciado;
 
-    @FXML
-    private TextField txf_edit_item_a;
+	@FXML
+	private TextField txf_edit_item_a;
 
-    @FXML
-    private TextField txf_edit_item_b;
+	@FXML
+	private TextField txf_edit_item_b;
 
-    @FXML
-    private TextField txf_edit_item_c;
+	@FXML
+	private TextField txf_edit_item_c;
 
-    @FXML
-    private TextField txf_edit_item_d;
+	@FXML
+	private TextField txf_edit_item_d;
 
-    @FXML
-    private TextField txf_edit_resposta;
+	@FXML
+	private TextField txf_edit_resposta;
 
-    @FXML
-    private TextField txf_edit_tema_a;
+	@FXML
+	private TextField txf_edit_tema_a;
 
-    @FXML
-    private TextField txf_edit_tema_b;
-    
-  //TopBar
-    @FXML
-    private Button btn_alunos;
+	@FXML
+	private TextField txf_edit_tema_b;
 
-    @FXML
-    private Button btn_atividade;
+	// TopBar
+	@FXML
+	private Button btn_alunos;
 
-    @FXML
-    private Button btn_professores;
+	@FXML
+	private Button btn_atividade;
 
-    @FXML
-    private Button btn_questoes;
+	@FXML
+	private Button btn_professores;
 
-    @FXML
-    private Button btn_sair;
-    
+	@FXML
+	private Button btn_questoes;
+
+	@FXML
+	private Button btn_sair;
+
 	@FXML
 	void cancelModal(ActionEvent event) {
 		pn_modal.setVisible(false);
 	}
+
 	@FXML
 	void cancelEditModal(ActionEvent event) {
 		pn_edit_modal.setVisible(false);
-    }
+	}
+
 	@FXML
 	void openModal(ActionEvent event) {
 		pn_modal.setVisible(true);
 	}
+
 	void openEditModal() {
 		pn_edit_modal.setVisible(true);
 	}
+
 	@FXML
 	void saveTema(ActionEvent event) {
 		Questao questao = new Questao();
@@ -196,9 +200,11 @@ public class QuestaoController implements Initializable {
 		// System.out.println(questaoService.editar(id, questao).toString());
 		pn_modal.setVisible(false);
 		startTable(questaoService.listar());
-		
+
 	}
+
 	Long selectedItem = (long) 0;
+
 	@FXML
 	void editTema(ActionEvent event) {
 		Questao questao = new Questao();
@@ -209,16 +215,16 @@ public class QuestaoController implements Initializable {
 		temas.add(new Tema(txf_edit_tema_b.getText()));
 
 		respostas.add(txf_edit_item_a.getText());
-		respostas.add(txf_edit_item_a.getText());
-		respostas.add(txf_edit_item_a.getText());
-		respostas.add(txf_edit_item_a.getText());
+		respostas.add(txf_edit_item_b.getText());
+		respostas.add(txf_edit_item_c.getText());
+		respostas.add(txf_edit_item_d.getText());
 
 		questao.setEnunciado(txf_edit_enunciado.getText());
 		questao.setTemas(temas);
 		questao.setRespostas(respostas);
 		questao.setVisibilidade(true);
 		questao.setCorreta(Integer.parseInt(txf_edit_resposta.getText()));
-		
+
 		try {
 			questaoService.editar(selectedItem, questao);
 		} catch (Exception e) {
@@ -227,41 +233,36 @@ public class QuestaoController implements Initializable {
 		}
 		startTable(questaoService.listar());
 	}
-	
 
-    @FXML
-    void exit_app(ActionEvent event) {
+	@FXML
+	void exit_app(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void goToAlunos(ActionEvent event) {
+	@FXML
+	void goToAlunos(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void goToAtividades(ActionEvent event) {
-    	router.navigate(DashboardController.class, event);
-    }
+	@FXML
+	void goToAtividades(ActionEvent event) {
+		router.navigate(DashboardController.class, event);
+	}
 
-   
+	@FXML
+	void goToQuestoes(ActionEvent event) {
+		router.navigate(NovaAtividadeController.class, event);
+	}
 
-    @FXML
-    void goToQuestoes(ActionEvent event) {
-    	router.navigate(NovaAtividadeController.class, event);
-    }
+	@FXML
+	void gotToprofessores(ActionEvent event) {
 
+	}
+	// Methods
 
-    @FXML
-    void gotToprofessores(ActionEvent event) {
-
-    }
-    //Methods
-    
 	public void cleanFields() {
 		txf_edit_tema_a.setText("");
 		txf_edit_tema_b.setText("");
-
 
 		txf_edit_item_a.setText("");
 		txf_edit_item_b.setText("");
@@ -269,107 +270,120 @@ public class QuestaoController implements Initializable {
 		txf_edit_item_d.setText("");
 
 		txf_edit_enunciado.setText("");
-	
+
 		txf_edit_resposta.setText("");
 	}
+
 	public void startTable(List<Questao> questoes) {
 		column_id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		column_enunciado.setCellValueFactory(new PropertyValueFactory<>("enunciado"));
-		//column_id.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
-		ArrayList<Questao> temp= new ArrayList<>();
-		for(int i = 0; i < questoes.size();i++) {
+		// column_id.setCellValueFactory(new PropertyValueFactory<>("id_equipamento"));
+		ArrayList<Questao> temp = new ArrayList<>();
+		for (int i = 0; i < questoes.size(); i++) {
 			temp.add(questoes.get(i));
 		}
 		tb_temas.setItems(FXCollections.observableArrayList(temp));
-		//tb_temas.setItems(FXCollections.observableArrayList());
-		//ObservableList<Questao> obslist = FXCollections.observableArrayList(temp);
-		//tb_temas.setItems(obslist);
+		// tb_temas.setItems(FXCollections.observableArrayList());
+		// ObservableList<Questao> obslist = FXCollections.observableArrayList(temp);
+		// tb_temas.setItems(obslist);
 	}
+
 	private void addButtonToTable() {
-        @SuppressWarnings({ "unchecked", "rawtypes" })
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		TableColumn<Questao, Void> colBtn = new TableColumn("Opc");
 
-        Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>> cellFactory = new Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>>() {
-            @Override
-            public TableCell<Questao, Void> call(final TableColumn<Questao, Void> param) {
-                final TableCell<Questao, Void> cell = new TableCell<Questao, Void>() {
-                    private final Button btn = new Button("Deletar");
+		Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>> cellFactory = new Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>>() {
+			@Override
+			public TableCell<Questao, Void> call(final TableColumn<Questao, Void> param) {
+				final TableCell<Questao, Void> cell = new TableCell<Questao, Void>() {
+					private final Button btn = new Button("Deletar");
 
-                    {
-                        btn.setOnAction((ActionEvent event) -> {
-                            Questao data = getTableView().getItems().get(getIndex());
-                            
-                            System.out.println("Deletado: " + data);
-                            try {
+					{
+						btn.setOnAction((ActionEvent event) -> {
+							Questao data = getTableView().getItems().get(getIndex());
+
+							System.out.println("Deletado: " + data);
+							try {
 								questaoService.deletar(data.getId());
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-                            startTable(questaoService.listar());
-                        });
-                    }
-                    
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            setGraphic(btn);
-                            //setGraphic(editBtn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        @SuppressWarnings({ "unchecked", "rawtypes" })
+							startTable(questaoService.listar());
+						});
+					}
+
+					@Override
+					public void updateItem(Void item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+							setGraphic(btn);
+							// setGraphic(editBtn);
+						}
+					}
+				};
+				return cell;
+			}
+		};
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		TableColumn<Questao, Void> colEditBtn = new TableColumn("Edit");
-        Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>> cellFactory2 = new Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>>() {
-            @Override
-            public TableCell<Questao, Void> call(final TableColumn<Questao, Void> param) {
-                final TableCell<Questao, Void> cell = new TableCell<Questao, Void>() {
-            
-                    private final Button editBtn = new Button("Editar");
+		Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>> cellFactory2 = new Callback<TableColumn<Questao, Void>, TableCell<Questao, Void>>() {
+			@Override
+			public TableCell<Questao, Void> call(final TableColumn<Questao, Void> param) {
+				final TableCell<Questao, Void> cell = new TableCell<Questao, Void>() {
 
-                    {
-                    	editBtn.setOnAction((ActionEvent event) -> {
-                            Questao data = getTableView().getItems().get(getIndex());
-                            openEditModal();
-                            txf_edit_tema_a.setText("");
-                    		txf_edit_tema_b.setText("");
-                   
-                    		
-                    		txf_edit_item_a.setText("");
-                    		txf_edit_item_a.setText("");
-                    		txf_edit_item_a.setText("");
-                    		txf_edit_item_a.setText("");
+					private final Button editBtn = new Button("Editar");
 
-                    		txf_edit_enunciado.setText(data.getEnunciado());
-                    	
-                    		txf_edit_resposta.setText(Integer.toString( data.getRespondida()));
-                            //System.out.println("Editado: " + data);
-                           selectedItem = data.getId();
-                        });
-                    }
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                           
-                            setGraphic(editBtn);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-        colBtn.setCellFactory(cellFactory);
-        colEditBtn.setCellFactory(cellFactory2);
-        tb_temas.getColumns().add(colBtn);
-        tb_temas.getColumns().add(colEditBtn);
-    }
+					{
+						editBtn.setOnAction((ActionEvent event) -> {
+							Questao data = getTableView().getItems().get(getIndex());
+							try {
+								Questao q = questaoService.buscarPorId(data.getId());
+								if (q != null) {
+
+									openEditModal();
+									ArrayList<Tema> temas = new ArrayList<>(q.getTemas());
+									txf_edit_tema_a.setText(temas.get(0).getNome());
+									txf_edit_tema_b.setText(temas.get(1).getNome());
+									
+									ArrayList<String> resp = new ArrayList<>(q.getRespostas());
+									txf_edit_item_a.setText(resp.get(0));
+									txf_edit_item_b.setText(resp.get(1));
+									txf_edit_item_c.setText(resp.get(2));
+									txf_edit_item_d.setText(resp.get(3));
+
+									txf_edit_enunciado.setText(data.getEnunciado());
+
+									txf_edit_resposta.setText(Integer.toString(data.getRespondida()));
+									// System.out.println("Editado: " + data);
+									selectedItem = data.getId();
+								}
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						});
+					}
+
+					@Override
+					public void updateItem(Void item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+
+							setGraphic(editBtn);
+						}
+					}
+				};
+				return cell;
+			}
+		};
+		colBtn.setCellFactory(cellFactory);
+		colEditBtn.setCellFactory(cellFactory2);
+		tb_temas.getColumns().add(colBtn);
+		tb_temas.getColumns().add(colEditBtn);
+	}
 }
