@@ -111,17 +111,51 @@ public class QuestaoController implements Initializable {
 
 	@FXML
 	private TextField txf_tema2;
+	
+	//Edicao
+	@FXML
+    private Button btn_editar;
+	@FXML
+    private Pane pn_edit_modal;
+	@FXML
+    private TextField txf_edit_enunciado;
+
+    @FXML
+    private TextField txf_edit_item_a;
+
+    @FXML
+    private TextField txf_edit_item_b;
+
+    @FXML
+    private TextField txf_edit_item_c;
+
+    @FXML
+    private TextField txf_edit_item_d;
+
+    @FXML
+    private TextField txf_edit_resposta;
+
+    @FXML
+    private TextField txf_edit_tema_a;
+
+    @FXML
+    private TextField txf_edit_tema_b;
 
 	@FXML
 	void cancelModal(ActionEvent event) {
 		pn_modal.setVisible(false);
 	}
-
+	@FXML
+	void cancelEditModal(ActionEvent event) {
+		pn_edit_modal.setVisible(false);
+    }
 	@FXML
 	void openModal(ActionEvent event) {
 		pn_modal.setVisible(true);
 	}
-
+	void openEditModal() {
+		pn_edit_modal.setVisible(true);
+	}
 	@FXML
 	void saveTema(ActionEvent event) {
 		Questao questao = new Questao();
@@ -148,7 +182,35 @@ public class QuestaoController implements Initializable {
 		startTable(questaoService.listar());
 		
 	}
-	
+	Long selectedItem = (long) 0;
+	@FXML
+	void editTema(ActionEvent event) {
+		Questao questao = new Questao();
+		Set<Tema> temas = new HashSet<>();
+		Set<String> respostas = new HashSet<>();
+
+		temas.add(new Tema(txf_edit_tema_a.getText()));
+		temas.add(new Tema(txf_edit_tema_b.getText()));
+
+		respostas.add(txf_edit_item_a.getText());
+		respostas.add(txf_edit_item_a.getText());
+		respostas.add(txf_edit_item_a.getText());
+		respostas.add(txf_edit_item_a.getText());
+
+		questao.setEnunciado(txf_edit_enunciado.getText());
+		questao.setTemas(temas);
+		questao.setRespostas(respostas);
+		questao.setVisibilidade(true);
+		questao.setCorreta(Integer.parseInt(txf_edit_resposta.getText()));
+		
+		try {
+			questaoService.editar(selectedItem, questao);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	private void cleanFields() {
 		
 	}
@@ -190,7 +252,28 @@ public class QuestaoController implements Initializable {
                             startTable(questaoService.listar());
                         });
                     }
+                    private final Button editBtn = new Button("Editar");
 
+                    {
+                    	editBtn.setOnAction((ActionEvent event) -> {
+                            Questao data = getTableView().getItems().get(getIndex());
+                            openEditModal();
+                            txf_edit_tema_a.setText("");
+                    		txf_edit_tema_b.setText("");
+                   
+                    		
+                    		txf_edit_item_a.setText("");
+                    		txf_edit_item_a.setText("");
+                    		txf_edit_item_a.setText("");
+                    		txf_edit_item_a.setText("");
+
+                    		txf_edit_enunciado.setText(data.getEnunciado());
+                    	
+                    		txf_edit_resposta.setText(Integer.toString( data.getRespondida()));
+                            //System.out.println("Editado: " + data);
+                           
+                        });
+                    }
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -198,6 +281,7 @@ public class QuestaoController implements Initializable {
                             setGraphic(null);
                         } else {
                             setGraphic(btn);
+                            //setGraphic(editBtn);
                         }
                     }
                 };

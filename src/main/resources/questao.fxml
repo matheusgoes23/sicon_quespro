@@ -49,5 +49,35 @@
             <Label layoutX="303.0" layoutY="288.0" text="Tema B" />
          </children>
       </Pane>
+      <Pane fx:id="pn_edit_modal" layoutX="359.0" layoutY="145.0" prefHeight="521.0" prefWidth="579.0" style="-fx-background-color: #fff; -fx-border-radius: 7px; -fx-background-radius: 7px;" visible="false">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text layoutX="134.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar/ Ver detalhes" wrappingWidth="283.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txf_edit_enunciado" layoutX="88.0" layoutY="159.0" prefHeight="25.0" prefWidth="403.0" promptText="enunciado" />
+            <Label layoutX="88.0" layoutY="136.0" text="Enunciado" />
+            <Button fx:id="btn_editar" layoutX="517.0" layoutY="482.0" mnemonicParsing="false" onAction="#editTema" text="Salvar" />
+            <Button fx:id="tbn_cancel1" layoutX="445.0" layoutY="482.0" mnemonicParsing="false" onAction="#cancelEditModal" text="Cancelar" />
+            <TextField fx:id="txf_edit_item_a" layoutX="88.0" layoutY="207.0" prefHeight="25.0" prefWidth="193.0" promptText="enunciado" />
+            <Label layoutX="88.0" layoutY="184.0" text="Item A" />
+            <TextField fx:id="txf_edit_item_b" layoutX="88.0" layoutY="264.0" prefHeight="25.0" prefWidth="193.0" promptText="enunciado" />
+            <Label layoutX="88.0" layoutY="241.0" text="Item B" />
+            <TextField fx:id="txf_edit_item_c" layoutX="88.0" layoutY="312.0" prefHeight="25.0" prefWidth="193.0" promptText="enunciado" />
+            <Label layoutX="88.0" layoutY="289.0" text="Item C" />
+            <TextField fx:id="txf_edit_item_d" layoutX="88.0" layoutY="367.0" prefHeight="25.0" prefWidth="193.0" promptText="enunciado" />
+            <Label layoutX="88.0" layoutY="344.0" text="Item D" />
+            <TextField fx:id="txf_edit_resposta" layoutX="303.0" layoutY="206.0" prefHeight="25.0" prefWidth="55.0" promptText="enunciado" />
+            <Label layoutX="303.0" layoutY="183.0" text="Resposta" />
+            <TextField fx:id="txf_edit_tema_a" layoutX="303.0" layoutY="263.0" prefHeight="25.0" prefWidth="160.0" promptText="enunciado" />
+            <Label layoutX="303.0" layoutY="240.0" text="Tema A" />
+            <TextField fx:id="txf_edit_tema_b" layoutX="303.0" layoutY="311.0" prefHeight="25.0" prefWidth="160.0" promptText="enunciado" />
+            <Label layoutX="303.0" layoutY="288.0" text="Tema B" />
+         </children>
+      </Pane>
    </children>
 </Pane>
